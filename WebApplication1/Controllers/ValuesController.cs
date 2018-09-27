@@ -19,28 +19,31 @@ namespace WebApplication1.Controllers
 		}
 
 		// GET api/values/5
-		public string Get(int id)
+		public List<string> Get(int id)
 		{
 			int index = (id - 1);
 			string specificValue = values[index];
-			return specificValue;
-		}
+            return values;
+        }
 
 		// POST api/values
 		public void Post([FromBody]CustomModel value)
 		{
 			values.Add(value.Name);
-			Console.WriteLine(value);
 		}
 
 		// PUT api/values/5
-		public void Put(int id, [FromBody]string value)
+		public void Put(int id, [FromBody]CustomModel value)
 		{
+            int index = (id - 1);
+            values[index] = value.Name;
 		}
 
 		// DELETE api/values/5
 		public void Delete(int id)
 		{
+            int index = (id - 1);
+            values.RemoveAt(index);
 		}
 	}
 }
